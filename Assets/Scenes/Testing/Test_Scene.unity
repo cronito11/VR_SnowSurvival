@@ -43923,6 +43923,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1962815704}
     m_Modifications:
+    - target: {fileID: 190508, guid: daf81ff421f0ab241ba62bcb683f3043, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 449942, guid: daf81ff421f0ab241ba62bcb683f3043, type: 3}
       propertyPath: m_RootOrder
       value: 127
@@ -43982,7 +43986,7 @@ PrefabInstance:
       addedObject: {fileID: 1108149418}
     - targetCorrespondingSourceObject: {fileID: 190508, guid: daf81ff421f0ab241ba62bcb683f3043, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1108149420}
+      addedObject: {fileID: 1108149427}
   m_SourcePrefab: {fileID: 100100000, guid: daf81ff421f0ab241ba62bcb683f3043, type: 3}
 --- !u!4 &1108149411 stripped
 Transform:
@@ -44145,20 +44149,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1108149420
+--- !u!114 &1108149427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776251638}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca299fe7d4ea340428e6341e4e26228a, type: 3}
+  m_Script: {fileID: 11500000, guid: e115baae28611ee40bc49be5c9da5d0d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrabDistanceGuard
-  minDistance: 0
-  maxDistance: 0
+  m_EditorClassIdentifier: Assembly-CSharp::CollectibleItem
+  itemType: {fileID: 11400000, guid: 09bc2a866bdaf46498a4c2a75f02ee07, type: 2}
 --- !u!1 &1109096231
 GameObject:
   m_ObjectHideFlags: 0
