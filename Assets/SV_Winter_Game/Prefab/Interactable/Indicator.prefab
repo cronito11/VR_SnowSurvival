@@ -208,6 +208,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8445534076982742178, guid: ff594556045380b48abebd0cef3c0074, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8463692614481855950, guid: ff594556045380b48abebd0cef3c0074, type: 3}
       propertyPath: m_Name
       value: GameUI_Indicator
