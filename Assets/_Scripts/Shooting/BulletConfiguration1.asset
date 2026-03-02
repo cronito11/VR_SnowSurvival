@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a381b3ac6e32147b895eb332fc0477, type: 3}
   m_Name: BulletConfiguration1
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileConfig
-  speed: 30
+  speed: 81
   useGravity: 1
   collisionMode: 2
   lifetimeSeconds: 5
