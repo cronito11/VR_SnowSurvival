@@ -11,7 +11,7 @@ public class Health : MonoBehaviour,IDamageable
     [SerializeField] private ZeroHealthAction onZeroHealth = ZeroHealthAction.Die;
 
     public float MaxHealth => maxHealth;
-    public float CurrentHealth { get; private set; }
+    [field:SerializeField] public float CurrentHealth { get; private set; }
     public float NormalizedHealth => MaxHealth <= 0f ? 0f : CurrentHealth / MaxHealth;
     public HealthState State { get; private set; } = HealthState.Alive;
 
@@ -89,4 +89,5 @@ public class Health : MonoBehaviour,IDamageable
             HandleZeroHealth();
     }
 
+   
 }
