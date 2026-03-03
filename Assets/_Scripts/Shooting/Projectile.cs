@@ -26,9 +26,9 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, config.lifetimeSeconds);
     }
 
-    /*private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         // Simple behavior for the jam: destroy on first hit.
         Destroy(gameObject);
-    }*/
+    }
 }

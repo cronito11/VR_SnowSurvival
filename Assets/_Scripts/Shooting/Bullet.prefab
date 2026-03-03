@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6375326369334505106}
   - component: {fileID: 4175880955644378769}
   - component: {fileID: 7901050845969943428}
+  - component: {fileID: 5204549626742493212}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -154,3 +155,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5204549626742493212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473128842684236226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddcb2c226bce6ef49871faa1b851f582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileDamage
+  damage: 25
+  owner: {fileID: 6473128842684236226}
