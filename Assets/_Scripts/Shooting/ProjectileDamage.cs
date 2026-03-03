@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class ProjectileDamage : MonoBehaviour
 {
+   
     [SerializeField] private float damage = 25f;
     [SerializeField] private GameObject owner; // who fired (optional)
+
 
     private void OnTriggerEnter(Collider other)
     {

@@ -18,6 +18,9 @@ public class BearEnemyController : MonoBehaviour
     [SerializeField] private BearCombat combat;
     [SerializeField] private BearAnimatorDriver anim;
 
+    [Header("SFX")]
+    [SerializeField] private BearSfx sfx;
+
     private State _state;
     private int _waypointIndex;
     private float _waypointWaitUntil;
@@ -39,6 +42,7 @@ public class BearEnemyController : MonoBehaviour
         if (!movement) movement = GetComponent<BearMovement>();
         if (!combat) combat = GetComponent<BearCombat>();
         if (!anim) anim = GetComponent<BearAnimatorDriver>();
+        if (!sfx) sfx = GetComponent<BearSfx>();
 
         _waypointIndex = Mathf.Max(0, startWaypointIndex);
 
@@ -167,12 +171,14 @@ public class BearEnemyController : MonoBehaviour
     {
         _state = State.Patrol;
         _lostTargetTimer = 0f;
+        sfx?.ResetDetect();
     }
 
     private void EnterChase()
     {
         _state = State.Chase;
         _lostTargetTimer = 0f;
+        sfx?.OnDetectPlayer();
     }
 
     private void EnterAttack()
@@ -185,6 +191,9 @@ public class BearEnemyController : MonoBehaviour
     {
         _state = State.Dead;
 
+        // Play sound first (in case you disable components after).
+        sfx?.OnDeath();
+
         // Stop motion + play death.
         movement?.Stop();
         anim?.SetDead(true);
@@ -196,10 +205,19 @@ public class BearEnemyController : MonoBehaviour
         // Optional: destroy after delay (keep if you want loot/ragdoll etc).
         if (config != null && config.despawnDelay > 0f)
             Destroy(gameObject, config.despawnDelay);
+
     }
     public void SetExternalWiring(EnemyConfig config, PatrolRoute route)
     {
         if (config != null) this.config = config;
         if (route != null) this.patrolRoute = route;
     }
+
+    public void AE_PlayAttackSfx()
+    {
+        GetComponent<BearSfx>()?.OnAttack();
+    }
+
+    //public void AE_AttackSfx() => OnAttack();
+
 }
