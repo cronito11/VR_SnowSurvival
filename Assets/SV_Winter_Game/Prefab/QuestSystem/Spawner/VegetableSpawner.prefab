@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d24315243b97a54197dff2bd9c5ff26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawner
-  itemType: {fileID: 11400000, guid: a6d16f6824ad8434d9657f1520f88377, type: 2}
-  itemPrefab: {fileID: 1558482983724844, guid: a6dab281240c0aa469f73471d565fec1, type: 3}
+  itemType: {fileID: 11400000, guid: 1291abf5328679f4ca8ff5f2d6b652ad, type: 2}
+  itemPrefab: {fileID: 1605395507023206, guid: 6559126e9c113914ea172c41cfdb4f8d, type: 3}
 --- !u!1001 &3561691775016333654
 PrefabInstance:
   m_ObjectHideFlags: 0
