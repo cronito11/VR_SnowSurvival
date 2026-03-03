@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Death_Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   lines:
-  - text: Did i do enough ?
-    duration: 4
+  - text: Mom, did i do enough ?
+    duration: 10
     waitForInput: 0
