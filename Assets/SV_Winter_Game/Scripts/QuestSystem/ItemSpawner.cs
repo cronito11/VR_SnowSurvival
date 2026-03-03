@@ -3,76 +3,75 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
-    [Tooltip("The type of item this spawner creates.")]
     public ItemDefinition itemType;
-    
-    [Tooltip("The actual physical prefab to spawn (e.g., your Apple or Wood model).")]
     public GameObject itemPrefab;
 
-    // We keep track of the current spawned item so we don't accidentally spawn duplicates
     private GameObject _currentSpawnedItem;
 
     private void OnEnable()
     {
-        // Listen to the Game Events
-        GameEvents.OnQuestActivated += HandleQuestStarted;
+        GameEvents.OnQuestActivated       += HandleQuestStarted;
         GameEvents.OnQuestProgressUpdated += HandleItemDelivered;
-        
-        // Clean up leftovers when a quest ends or fails
-        GameEvents.OnQuestCompleted += CleanUpLeftovers;
-        GameEvents.OnQuestFailed += CleanUpLeftovers;
+        GameEvents.OnQuestCompleted       += HandleQuestCompleted;
+        GameEvents.OnQuestFailed          += HandleQuestFailed;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnQuestActivated -= HandleQuestStarted;
+        GameEvents.OnQuestActivated       -= HandleQuestStarted;
         GameEvents.OnQuestProgressUpdated -= HandleItemDelivered;
-        GameEvents.OnQuestCompleted -= CleanUpLeftovers;
-        GameEvents.OnQuestFailed -= CleanUpLeftovers;
+        GameEvents.OnQuestCompleted       -= HandleQuestCompleted;
+        GameEvents.OnQuestFailed          -= HandleQuestFailed;
+    }
+
+    private void Start()
+    {
+        // FIX: If QuestManager already fired OnQuestActivated before
+        // this spawner subscribed, catch it here and spawn immediately
+        if (QuestManager.Instance?.currentActiveQuest != null)
+        {
+                SpawnItem();
+        }
     }
 
     private void HandleQuestStarted(QuestState quest)
     {
-        // If the new quest needs THIS spawner's item type, spawn the very first one!
-        if (quest.sourceQuest.requiredItem == itemType)
-        {
-            SpawnItem();
-        }
+        if (quest.sourceQuest.requiredItem != itemType) return;
+        SpawnItem();
     }
 
     private void HandleItemDelivered(QuestState quest)
     {
-        // If the delivered item was for THIS spawner's type...
-        if (quest.sourceQuest.requiredItem == itemType)
-        {
-            // Check if we still need more to complete the quest
-            if (quest.currentAmount < quest.sourceQuest.requiredCount)
-            {
-                SpawnItem(); // Respawn!
-            }
-        }
+        if (quest.sourceQuest.requiredItem != itemType) return;
+        SpawnItem(); // respawn every delivery, no limit
     }
 
-    private void CleanUpLeftovers(QuestState quest)
+    private void HandleQuestCompleted(QuestState quest)
     {
-        // If the quest is over (win or lose) and the item is still sitting there, destroy it
-        if (quest.sourceQuest.requiredItem == itemType && _currentSpawnedItem != null)
-        {
+        if (quest.sourceQuest.requiredItem != itemType) return;
+        if (_currentSpawnedItem != null)
             Destroy(_currentSpawnedItem);
-        }
+    }
+
+    private void HandleQuestFailed(QuestState quest)
+    {
+        if (quest.sourceQuest.requiredItem != itemType) return;
+        if (_currentSpawnedItem != null)
+            Destroy(_currentSpawnedItem);
     }
 
     private void SpawnItem()
     {
-        // Safety check: if there is already an item here, destroy it before making a new one
-        if (_currentSpawnedItem != null)
+        if (itemPrefab == null)
         {
-            Destroy(_currentSpawnedItem);
+            Debug.LogError($"[ItemSpawner] itemPrefab not assigned on '{gameObject.name}'!");
+            return;
         }
 
-        // Spawn the prefab exactly where this Spawner GameObject is located
+        if (_currentSpawnedItem != null)
+            Destroy(_currentSpawnedItem);
+
         _currentSpawnedItem = Instantiate(itemPrefab, transform.position, transform.rotation);
-        
-        Debug.Log($"[ItemSpawner] Spawned a new {itemType.displayName} at {gameObject.name}");
+        Debug.Log($"[ItemSpawner] Spawned '{itemType.displayName}' at '{gameObject.name}'");
     }
 }
