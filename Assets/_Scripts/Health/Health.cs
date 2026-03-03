@@ -15,6 +15,10 @@ public class Health : MonoBehaviour,IDamageable
     public float NormalizedHealth => MaxHealth <= 0f ? 0f : CurrentHealth / MaxHealth;
     public HealthState State { get; private set; } = HealthState.Alive;
 
+    [Header("Dialogue References")]
+    [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private DialogueAsset onDeathDialogue;
+
     // UI/dev hooks (bind later)
     public event Action<Health> HealthChanged;      // fires on any health change
     public event Action<Health> KnockedOut;         // fires once when KO happens
@@ -92,6 +96,7 @@ public class Health : MonoBehaviour,IDamageable
             State = HealthState.KnockedOut;
             KnockedOut?.Invoke(this);
         }
+        DialogueManager.Instance.Play(onDeathDialogue);
     }
 
 }

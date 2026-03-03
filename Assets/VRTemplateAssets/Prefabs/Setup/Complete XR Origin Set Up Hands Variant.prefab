@@ -734,6 +734,8 @@ MonoBehaviour:
   maxHealth: 100
   onZeroHealth: 1
   <CurrentHealth>k__BackingField: 0
+  dialogueManager: {fileID: 0}
+  onDeathDialogue: {fileID: 11400000, guid: 01901369ac2b46f4ead8fbe4a01676ca, type: 2}
 --- !u!114 &6517711783297264290
 MonoBehaviour:
   m_ObjectHideFlags: 0
