@@ -16,4 +16,4 @@ MonoBehaviour:
   requiredItem: {fileID: 11400000, guid: cf69d29962d1a8f4b8e15d5831a22f5e, type: 2}
   requiredCount: 1
   timeLimitInSec: 60
-  description: 
+  description: Collect_1_MeatBall

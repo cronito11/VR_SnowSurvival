@@ -16,4 +16,4 @@ MonoBehaviour:
   requiredItem: {fileID: 11400000, guid: 1291abf5328679f4ca8ff5f2d6b652ad, type: 2}
   requiredCount: 1
   timeLimitInSec: 30
-  description: Collect 3 Woods
+  description: Collect_1_Vegetable

@@ -3,10 +3,7 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
-    [Tooltip("The type of item this spawner creates.")]
     public ItemDefinition itemType;
-
-    [Tooltip("The actual physical prefab to spawn (e.g., your GoldBar model).")]
     public GameObject itemPrefab;
 
     private GameObject _currentSpawnedItem;
@@ -27,26 +24,31 @@ public class ItemSpawner : MonoBehaviour
         GameEvents.OnQuestFailed          -= HandleQuestFailed;
     }
 
+    private void Start()
+    {
+        // FIX: If QuestManager already fired OnQuestActivated before
+        // this spawner subscribed, catch it here and spawn immediately
+        if (QuestManager.Instance?.currentActiveQuest != null)
+        {
+                SpawnItem();
+        }
+    }
+
     private void HandleQuestStarted(QuestState quest)
     {
         if (quest.sourceQuest.requiredItem != itemType) return;
-
         SpawnItem();
     }
 
     private void HandleItemDelivered(QuestState quest)
     {
         if (quest.sourceQuest.requiredItem != itemType) return;
-
-        // Respawn every time an item is delivered, no limit
-        SpawnItem();
+        SpawnItem(); // respawn every delivery, no limit
     }
 
     private void HandleQuestCompleted(QuestState quest)
     {
         if (quest.sourceQuest.requiredItem != itemType) return;
-
-        // Destroy any leftover item still sitting in the world
         if (_currentSpawnedItem != null)
             Destroy(_currentSpawnedItem);
     }
@@ -54,9 +56,6 @@ public class ItemSpawner : MonoBehaviour
     private void HandleQuestFailed(QuestState quest)
     {
         if (quest.sourceQuest.requiredItem != itemType) return;
-
-        // Destroy leftover item but keep the spawner alive
-        // The quest goes back into the pool to retry, so we'll need to spawn again
         if (_currentSpawnedItem != null)
             Destroy(_currentSpawnedItem);
     }
@@ -65,11 +64,10 @@ public class ItemSpawner : MonoBehaviour
     {
         if (itemPrefab == null)
         {
-            Debug.LogError($"[ItemSpawner] itemPrefab is not assigned on '{gameObject.name}'!");
+            Debug.LogError($"[ItemSpawner] itemPrefab not assigned on '{gameObject.name}'!");
             return;
         }
 
-        // Destroy existing item before spawning a new one
         if (_currentSpawnedItem != null)
             Destroy(_currentSpawnedItem);
 

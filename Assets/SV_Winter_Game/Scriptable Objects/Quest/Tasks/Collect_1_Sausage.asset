@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9e2e4abffc435c4f82019b182a52454, type: 3}
-  m_Name: Collect_2_GoldBar
+  m_Name: Collect_1_Sausage
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
-  taskID: Collect_2_GoldBar
-  requiredItem: {fileID: 11400000, guid: a6d16f6824ad8434d9657f1520f88377, type: 2}
-  requiredCount: 2
+  taskID: Collect_1_Sausage
+  requiredItem: {fileID: 11400000, guid: 9d063d58149a7dd4889e20aa51cc633f, type: 2}
+  requiredCount: 1
   timeLimitInSec: 60
-  description: Hello
+  description: Collect_1_Sausage

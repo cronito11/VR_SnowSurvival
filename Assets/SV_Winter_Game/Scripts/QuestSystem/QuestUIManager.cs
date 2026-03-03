@@ -4,7 +4,6 @@ using TMPro;
 public class QuestUIManager : MonoBehaviour
 {
     [Header("Active Quest")]
-    public GameObject activeQuestPanel;
     public TextMeshProUGUI questNameText;
     public TextMeshProUGUI progressText;
     public TextMeshProUGUI timerText;
@@ -71,7 +70,6 @@ public class QuestUIManager : MonoBehaviour
 
     private void HandleQuestFailed(QuestState quest)
     {
-        activeQuestPanel.SetActive(false);
         completedText.text += $"<color=red>✗  {quest.sourceQuest.taskID}  (timed out)</color>\n";
     }
 

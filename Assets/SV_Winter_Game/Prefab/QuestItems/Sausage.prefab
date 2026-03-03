@@ -72,6 +72,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 011f356bcfaee5547846fe77d0b7a0e6, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6943845046237174386}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 011f356bcfaee5547846fe77d0b7a0e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8581130333447316087}
   m_SourcePrefab: {fileID: 100100000, guid: 011f356bcfaee5547846fe77d0b7a0e6, type: 3}
 --- !u!1 &7709228214899735520 stripped
 GameObject:
@@ -269,3 +272,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectableItem
   itemDefinition: {fileID: 11400000, guid: 9d063d58149a7dd4889e20aa51cc633f, type: 2}
+--- !u!65 &-8581130333447316087
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709228214899735520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5000556, y: 0.15374821, z: 0.34428433}
+  m_Center: {x: -0.044225335, y: 0.07400456, z: 0.09486316}
