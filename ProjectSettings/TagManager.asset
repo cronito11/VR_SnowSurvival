@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - Enemies
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,7 @@ TagManager:
   - Player
   - MiniMap_UI
   - MiniMap
-  - 
-  - 
+  - Character
   - 
   - 
   - 
@@ -38,7 +38,7 @@ TagManager:
   - 
   - 
   - XR Simulation
-  - 
+  - XR Simulation
   m_SortingLayers:
   - name: Default
     uniqueID: 0
