@@ -13359,7 +13359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
-  m_TargetOffset: {x: 1.32, y: -0.46, z: 2.08}
+  m_TargetOffset: {x: 0.7, y: -0.46, z: 2.14}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
