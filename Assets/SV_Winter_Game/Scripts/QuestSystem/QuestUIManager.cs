@@ -54,7 +54,6 @@ public class QuestUIManager : MonoBehaviour
 
     private void HandleQuestActivated(QuestState quest)
     {
-        activeQuestPanel.SetActive(true);
         questNameText.text = quest.sourceQuest.taskID;
         SetProgress(quest);
     }
@@ -66,7 +65,6 @@ public class QuestUIManager : MonoBehaviour
 
     private void HandleQuestCompleted(QuestState quest)
     {
-        activeQuestPanel.SetActive(false);
         
         completedText.text += $"<color=green>✓  {quest.sourceQuest.taskID}</color>\n";
     }
