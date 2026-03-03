@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e2e4abffc435c4f82019b182a52454, type: 3}
+  m_Name: Collect_1_Wood
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  taskID: Collect_1_Wood
+  requiredItem: {fileID: 11400000, guid: 1291abf5328679f4ca8ff5f2d6b652ad, type: 2}
+  requiredCount: 1
+  timeLimitInSec: 30
+  description: Collect 3 Woods
