@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b95ff1e8c2cddb246b60076f410e667f, type: 3}
-  m_Name: Food
-  m_EditorClassIdentifier: Assembly-CSharp::ItemType
-  typeName: Food
+  m_Script: {fileID: 11500000, guid: b31f083669b4265488f5e25b2d16602a, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
+  itemID: Water
+  displayName: Water
+  icon: {fileID: 0}
