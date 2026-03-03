@@ -197,4 +197,9 @@ public class BearEnemyController : MonoBehaviour
         if (config != null && config.despawnDelay > 0f)
             Destroy(gameObject, config.despawnDelay);
     }
+    public void SetExternalWiring(EnemyConfig config, PatrolRoute route)
+    {
+        if (config != null) this.config = config;
+        if (route != null) this.patrolRoute = route;
+    }
 }
