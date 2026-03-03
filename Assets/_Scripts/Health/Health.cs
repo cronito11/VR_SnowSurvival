@@ -43,6 +43,23 @@ public class Health : MonoBehaviour,IDamageable
         SetHealth(Mathf.Max(healthAmount, 1f));
     }
 
+    public void TakeDamage(float amount, GameObject instigator = null)
+    {
+
+        if (State != HealthState.Alive) return;
+        if (amount <= 0f) return;
+
+        SetHealth(CurrentHealth - amount);
+
+        if (CurrentHealth <= 0f)
+            HandleZeroHealth();
+    }
+
+    public void TakeDamage(float amount)
+    {
+        TakeDamage(amount, null);
+    }
+
     public void SetMaxHealth(float newMax, bool keepPercent = true)
     {
         newMax = Mathf.Max(0f, newMax);
@@ -77,17 +94,4 @@ public class Health : MonoBehaviour,IDamageable
         }
     }
 
-    public void TakeDamage(float amount, GameObject instigator = null)
-    {
-
-        if (State != HealthState.Alive) return;
-        if (amount <= 0f) return;
-
-        SetHealth(CurrentHealth - amount);
-
-        if (CurrentHealth <= 0f)
-            HandleZeroHealth();
-    }
-
-   
 }

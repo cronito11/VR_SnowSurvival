@@ -8,7 +8,7 @@ public class ProjectileDamage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // If you use separate child hitboxes, this is usually safer:
-        var damageable = other.GetComponent<IDamageable>();
+        var damageable = other.GetComponentInParent<IDamageable>();
         if (damageable != null)
             damageable.TakeDamage(damage, owner);
         else
