@@ -71,6 +71,16 @@ public class SimpleShooter : MonoBehaviour
             return;
 
         Projectile projectile = Instantiate(projectilePrefab, muzzle.position, muzzle.rotation);
+
+        // Ignore collisions with the gun + parent hierarchy colliders (hands/controller models).
+        var projCol = projectile.GetComponent<Collider>();
+        if (projCol != null)
+        {
+            var ownerCols = GetComponentsInParent<Collider>();
+            for (int i = 0; i < ownerCols.Length; i++)
+                Physics.IgnoreCollision(projCol, ownerCols[i], true);
+        }
+
         projectile.Launch(muzzle.forward, projectileConfig);
     }
 }
