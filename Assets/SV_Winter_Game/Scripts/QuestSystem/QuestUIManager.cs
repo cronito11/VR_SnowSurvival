@@ -7,6 +7,7 @@ public class QuestUIManager : MonoBehaviour
     public TextMeshProUGUI questNameText;
     public TextMeshProUGUI progressText;
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI zone;
 
     [Header("Completed Quests")]
     public TextMeshProUGUI completedText; 
@@ -54,6 +55,7 @@ public class QuestUIManager : MonoBehaviour
     private void HandleQuestActivated(QuestState quest)
     {
         questNameText.text = quest.sourceQuest.taskID;
+        zone.text = $"Zone: {quest.assignedZoneID}";
         SetProgress(quest);
     }
 
