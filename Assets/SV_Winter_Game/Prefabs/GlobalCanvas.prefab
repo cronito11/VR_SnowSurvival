@@ -186,9 +186,9 @@ Canvas:
   m_GameObject: {fileID: 7554040965528508583}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 2
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -248,9 +248,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8146170164502605911}
     m_Modifications:
+    - target: {fileID: 1755708881146918871, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -501
+      objectReference: {fileID: 0}
     - target: {fileID: 5562084563743368711, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
       propertyPath: m_Name
       value: UIGamePlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251283665179257922, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251283665179257922, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 368
       objectReference: {fileID: 0}
     - target: {fileID: 7530319553621923076, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
       propertyPath: m_Pivot.x
@@ -283,6 +295,18 @@ PrefabInstance:
     - target: {fileID: 7530319553621923076, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530319553621923076, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530319553621923076, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530319553621923076, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 7530319553621923076, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -331,6 +355,10 @@ PrefabInstance:
     - target: {fileID: 7530319553621923076, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7530319553621923076, guid: 3b44490679f6093449b1abf4f0a666cb, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

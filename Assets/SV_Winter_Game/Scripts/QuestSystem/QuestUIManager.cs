@@ -10,18 +10,13 @@ public class QuestUIManager : MonoBehaviour
     public TextMeshProUGUI timerText;
 
     [Header("Completed Quests")]
-    public GameObject completedQuestPanel;
     public TextMeshProUGUI completedText; 
     
     [Header("Failed Quests")]
-    public GameObject failedQuestPanel;
     public TextMeshProUGUI failedText;
 
     private void Awake()
     {
-        activeQuestPanel.SetActive(false);
-        completedQuestPanel.SetActive(true);
-        failedQuestPanel.SetActive(true);
         completedText.text = "";  
         failedText.text = "";
     }

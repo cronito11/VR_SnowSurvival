@@ -5,10 +5,7 @@ using DG.Tweening;
 
 public class UI_TemperatureManager : MonoBehaviour
 {
-    [Header("Temperature values")]
-    [SerializeField] private int maxTemperature;
-    [SerializeField] private int minTemperature;
-
+    [SerializeField] private TemperatureRuntimeState temperatureRuntimeState;
     [SerializeField] private Color maxTemperatureColor;
     [SerializeField] private Color maxTemperatureColor_TemperatureBar;
     [SerializeField] private Color minTemperatureColor;
@@ -25,16 +22,35 @@ public class UI_TemperatureManager : MonoBehaviour
 
     private float displayedTemperature;
 
+    private void Start()
+    {
+        if (temperatureRuntimeState != null)
+        {
+            temperatureRuntimeState.OnBodyTempChanged += OnTemperatureChange;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (temperatureRuntimeState != null)
+        {
+            temperatureRuntimeState.OnBodyTempChanged -= OnTemperatureChange;
+        }
+
+        // Clean up tweens when the object is destroyed
+        DOTween.Kill(this);
+    }
+
+
     public void OnTemperatureChange(float temperature)
     { 
-        // Convert normalized temperature (0-1) to actual temperature value
-        float actualTemperature = Mathf.Lerp(minTemperature, maxTemperature, temperature);
+        
         
         // Kill any existing tweens to prevent conflicts
         DOTween.Kill(this);
 
         // Animate the temperature value
-        DOTween.To(() => displayedTemperature, x => displayedTemperature = x, actualTemperature, animationDuration)
+        DOTween.To(() => displayedTemperature, x => displayedTemperature = x, temperatureRuntimeState.CurrentBodyTempC, animationDuration)
             .SetEase(animationEase)
             .SetTarget(this)
             .OnUpdate(() => {
@@ -66,11 +82,5 @@ public class UI_TemperatureManager : MonoBehaviour
                 .SetEase(animationEase)
                 .SetTarget(this);
         }
-    }
-
-    private void OnDestroy()
-    {
-        // Clean up tweens when the object is destroyed
-        DOTween.Kill(this);
     }
 }
