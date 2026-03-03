@@ -29,6 +29,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Simple behavior for the jam: destroy on first hit.
-        Destroy(gameObject);
+        Debug.Log($"Projectile hit {collision.gameObject.name} at {collision.GetContact(0).point}");
+        //Destroy(gameObject);
     }
 }
