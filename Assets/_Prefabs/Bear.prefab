@@ -1764,6 +1764,8 @@ MonoBehaviour:
   maxHealth: 100
   onZeroHealth: 1
   <CurrentHealth>k__BackingField: 0
+  dialogueManager: {fileID: 0}
+  onDeathDialogue: {fileID: 0}
 --- !u!82 &7999235625597493801
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2558,7 +2560,19 @@ PrefabInstance:
     - target: {fileID: 2683709512703670719, guid: 8e530cd64ba3fa344b7359451c4b03d6, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1190951230, guid: 847f3e08157367e458aec63415b2d664, type: 3}
+      objectReference: {fileID: 1744151977, guid: 132358e9bf26b60458b731bf001e31db, type: 3}
+    - target: {fileID: 2683709512703670719, guid: 8e530cd64ba3fa344b7359451c4b03d6, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683709512703670719, guid: 8e530cd64ba3fa344b7359451c4b03d6, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683709512703670719, guid: 8e530cd64ba3fa344b7359451c4b03d6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2756969463571717016, guid: 8e530cd64ba3fa344b7359451c4b03d6, type: 3}
       propertyPath: m_Sprite
       value: 
