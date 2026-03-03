@@ -1588,6 +1588,7 @@ GameObject:
   - component: {fileID: 5281806708792268111}
   - component: {fileID: 125206264976983080}
   - component: {fileID: 7999235625597493801}
+  - component: {fileID: 2002369750597241508}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Untagged
@@ -1677,6 +1678,7 @@ MonoBehaviour:
   movement: {fileID: 2217671567833951107}
   combat: {fileID: 5791043165225293436}
   anim: {fileID: 5281806708792268111}
+  sfx: {fileID: 2002369750597241508}
 --- !u!114 &5383074623615990789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,6 +1865,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2002369750597241508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193669928075149738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0a3b37392fa454a81168c69405e998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BearSfx
+  source: {fileID: 7999235625597493801}
+  detectClip: {fileID: 0}
+  attackClip: {fileID: 0}
+  deathClip: {fileID: 0}
+  detectVol: 1
+  attackVol: 1
+  deathVol: 1
 --- !u!1 &6269932638912246323
 GameObject:
   m_ObjectHideFlags: 0

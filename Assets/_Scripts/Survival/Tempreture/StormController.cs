@@ -20,6 +20,11 @@ public class StormController : MonoBehaviour
     [Tooltip("If true, stop will clear remaining particles immediately.")]
     [SerializeField] private bool clearOnStop = true;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource stormAudioSource;
+    [SerializeField] private AudioClip stormLoopClip;
+    [SerializeField, Range(0f, 1f)] private float stormVolume = 1f;
+
     [Header("Debug")]
     [SerializeField] private bool autoStartOnEnable = true;
     [SerializeField] private bool logStorms;
@@ -78,6 +83,24 @@ public class StormController : MonoBehaviour
                 snowParticles.Stop(true, behavior);
             }
         }
+
+        if (stormAudioSource != null && stormLoopClip != null)
+        {
+            if (active)
+            {
+                stormAudioSource.clip = stormLoopClip;
+                stormAudioSource.loop = true;               // loop while storm is active [web:149]
+                stormAudioSource.volume = stormVolume;
+                if (!stormAudioSource.isPlaying)
+                    stormAudioSource.Play();               // start sound [web:162]
+            }
+            else
+            {
+                if (stormAudioSource.isPlaying)
+                    stormAudioSource.Stop();               // stop sound [web:162]
+            }
+        }
+
 
         if (logStorms)
             Debug.Log(active ? "Storm started" : "Storm ended");
