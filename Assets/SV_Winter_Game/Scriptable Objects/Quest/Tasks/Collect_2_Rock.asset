@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9e2e4abffc435c4f82019b182a52454, type: 3}
-  m_Name: Collect_3_Wood_Zone1
+  m_Name: Collect_2_Rock
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
-  taskID: Collect_3_Wood_Zone1
-  requiredItem: {fileID: 11400000, guid: 1291abf5328679f4ca8ff5f2d6b652ad, type: 2}
-  targetZoneID: Zone1
-  requiredCount: 3
-  description: Collect 2 Woods
+  taskID: Collect_Rock_2
+  requiredItem: {fileID: 11400000, guid: a6d16f6824ad8434d9657f1520f88377, type: 2}
+  requiredCount: 2
+  timeLimit: 40
+  description: Hello

@@ -11,11 +11,11 @@ public class QuestData : ScriptableObject
     [Tooltip("Drag the ItemDefinition asset here")]
     public ItemDefinition requiredItem;
 
-    [Tooltip("Which zone must the item be dropped into? :QuestZone's zoneID")]
-    public string targetZoneID;
-
     [Tooltip("How many of that item are needed to complete this task.")]
     public int requiredCount = 1;
+
+    [Tooltip("How many seconds the player has to complete this task.")]
+    public float timeLimitInSec = 60f;
 
     [Header("Display")]
     [Tooltip("Short description shown in quest UI. ")]

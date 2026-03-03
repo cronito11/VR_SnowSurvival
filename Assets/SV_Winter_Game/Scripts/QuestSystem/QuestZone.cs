@@ -4,7 +4,6 @@ using UnityEngine;
 public class QuestZone : MonoBehaviour
 {
     [Header("Zone Identity")]
-    [Tooltip("Unique ID. Must match 'targetZoneID'.")]
     public string zoneID = "Zone_1";
 
     private BoxCollider _collider;
@@ -13,14 +12,26 @@ public class QuestZone : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider>();
         _collider.isTrigger = true;
-        gameObject.name = $"QuestZone_{zoneID}";
     }
 
     private void OnTriggerEnter(Collider other)
     {
         var item = other.GetComponent<CollectableItem>();
-        if (item == null) return;
+        if (item == null || item.itemDefinition == null) return;
 
-        item.DeliverToZone(zoneID);
+        // Ask the Manager: Is this the correct item for the CURRENT task in THIS zone?
+        bool isAccepted = QuestManager.Instance.TryDeliverItem(item.itemDefinition.itemID, zoneID);
+
+        if (isAccepted)
+        {
+            // The item was accepted! Destroy it.
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            // Wrong item, wrong zone, or no active quest. 
+            // The item just falls on the floor.
+            Debug.Log($"[QuestZone] {item.itemDefinition.itemID} was rejected by {zoneID}.");
+        }
     }
 }
