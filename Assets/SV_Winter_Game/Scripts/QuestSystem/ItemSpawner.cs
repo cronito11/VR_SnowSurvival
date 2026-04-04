@@ -26,7 +26,7 @@ public class ItemSpawner : MonoBehaviour
     private void Start()
     {
         if (QuestManager.Instance?.currentActiveQuest != null &&
-            QuestManager.Instance.currentActiveQuest.sourceQuest.requiredItem == itemType)
+            QuestManager.Instance.currentActiveQuest?.sourceQuest.requiredItem == itemType)
         {
             _questActive = true;
             SpawnItem();

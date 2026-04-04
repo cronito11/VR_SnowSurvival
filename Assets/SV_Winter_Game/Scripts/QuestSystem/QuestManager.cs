@@ -52,6 +52,14 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public bool IsItemDeliverable(string itemID, string zoneID)
+    {
+        if (currentActiveQuest == null) return false;
+        string requiredItemID = currentActiveQuest.sourceQuest.requiredItem.itemID;
+        string assignedZone = currentActiveQuest.assignedZoneID;
+        return requiredItemID == itemID && assignedZone == zoneID;
+    }
+
     // The Zone calls this to check if an item is allowed
     public bool TryDeliverItem(string itemID, string zoneID)
     {
