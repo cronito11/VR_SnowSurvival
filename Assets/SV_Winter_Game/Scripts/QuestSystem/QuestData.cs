@@ -17,6 +17,10 @@ public class QuestData : ScriptableObject
     [Tooltip("How many seconds the player has to complete this task.")]
     public float timeLimitInSec = 60f;
 
+    [Header("Zone")]
+    [Tooltip("Exact zone ID this task should be delivered to (fixed mapping, no random assignment).")]
+    public string fixedZoneID = "Zone_1";
+
     [Header("Display")]
     [Tooltip("Short description shown in quest UI. ")]
     [TextArea(1, 3)]

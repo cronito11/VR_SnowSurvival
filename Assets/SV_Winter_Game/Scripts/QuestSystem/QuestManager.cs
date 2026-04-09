@@ -7,7 +7,6 @@ public class QuestManager : MonoBehaviour
 
     [Header("Master Data")]
     public List<QuestData> allTasks = new List<QuestData>();
-    public List<string> allPossibleZones = new List<string>();
 
     [Header("Live Data (UI Programmer reads this)")]
     public QuestState currentActiveQuest; 
@@ -77,7 +76,7 @@ public class QuestManager : MonoBehaviour
                   $"You Delivered : Item '{itemID}' to Zone '{zoneID}' \n" +
                   $"Quest Needs   : Item '{requiredItemID}' at Zone '{assignedZone}'");
 
-        // Must match BOTH the required item AND the randomly assigned zone
+        // Must match BOTH the required item AND the quest's fixed zone
         if (requiredItemID == itemID && assignedZone == zoneID)
         {
             currentActiveQuest.currentAmount++;
@@ -128,18 +127,16 @@ public class QuestManager : MonoBehaviour
     {
         if (inactiveQuests.Count == 0) return;
 
-        // Guard
-        if (allPossibleZones.Count == 0)
-        {
-            Debug.LogError("[QuestManager] allPossibleZones is empty! Add zone IDs in the Inspector.");
-            return;
-        }
-
         QuestData blueprint = inactiveQuests[0];
         inactiveQuests.RemoveAt(0);
 
-        string randomZone = allPossibleZones[Random.Range(0, allPossibleZones.Count)];
-        currentActiveQuest = new QuestState(blueprint, randomZone, 0);
+        if (blueprint == null || string.IsNullOrWhiteSpace(blueprint.fixedZoneID))
+        {
+            Debug.LogError("[QuestManager] Quest is missing a fixedZoneID. Set it in QuestData.");
+            return;
+        }
+
+        currentActiveQuest = new QuestState(blueprint, blueprint.fixedZoneID, 0);
         GameEvents.QuestActivated(currentActiveQuest);
     }
 }
