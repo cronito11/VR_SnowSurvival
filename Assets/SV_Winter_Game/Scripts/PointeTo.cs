@@ -48,7 +48,7 @@ public class PointeTo : MonoBehaviour
         }
 
         string zoneID = QuestManager.Instance.currentActiveQuest.assignedZoneID;
-        QuestZone[] zones = FindObjectsOfType<QuestZone>();
+        QuestZone[] zones = Object.FindObjectsByType<QuestZone>(FindObjectsSortMode.None);
         
         foreach (var zone in zones)
         {

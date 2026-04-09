@@ -9,7 +9,7 @@ public class UI_TimeManager : MonoBehaviour
     {
         if (gameplayManager == null)
         {
-            gameplayManager = FindObjectOfType<GameplayManager>();
+            gameplayManager = Object.FindFirstObjectByType<GameplayManager>();
         }
 
         if (gameplayManager == null)
