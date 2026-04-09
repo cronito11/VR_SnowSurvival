@@ -9,7 +9,7 @@ public class QuestZone : MonoBehaviour
     public string zoneID = "Zone_1";
 
     private BoxCollider _collider;
-    private CollectableAgent_LO agent;
+    [SerializeField] private CollectableAgent_LO agent;
 
     private List<CollectableItem> collectable = new List<CollectableItem>();
 
@@ -17,6 +17,13 @@ public class QuestZone : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider>();
         _collider.isTrigger = true;
+
+        // Prefer inspector wiring, then look locally as a fallback.
+        if (agent == null)
+            agent = GetComponentInParent<CollectableAgent_LO>();
+
+        if (agent == null)
+            Debug.LogWarning($"[QuestZone] No CollectableAgent_LO assigned on {name}. Items will be queued but target won't update.");
     }
 
     public CollectableItem Collect(CollectableItem item)
@@ -32,14 +39,14 @@ public class QuestZone : MonoBehaviour
         }
         else
         {
-            // Wrong item, wrong zone, or no active quest. 
+            // Wrong item, wrong zone, or no active quest.
             // The item just falls on the floor.
             Debug.Log($"[QuestZone] {item.itemDefinition.itemID} was rejected by {zoneID}.");
         }
 
-        if(collectable.Count == 0)
+        if (collectable.Count == 0)
             return null;
-        
+
 
         return collectable[0];
     }
@@ -48,6 +55,12 @@ public class QuestZone : MonoBehaviour
         var item = other.GetComponent<CollectableItem>();
         if (item == null || item.itemDefinition == null) return;
 
+        if (QuestManager.Instance == null)
+        {
+            Debug.LogWarning("[QuestZone] QuestManager.Instance is null. Ignoring trigger event.");
+            return;
+        }
+
         if (!QuestManager.Instance.IsItemDeliverable(item.itemDefinition.itemID, zoneID))
         {
             Debug.Log($"[QuestZone] {item.itemDefinition.itemID} was rejected by {zoneID}.");
@@ -55,7 +68,9 @@ public class QuestZone : MonoBehaviour
         }
 
         collectable.Add(item);
-        agent.ChangeTarget(item.transform);
+
+        if (agent != null)
+            agent.ChangeTarget(item.transform);
 
         /*
         // Ask the Manager: Is this the correct item for the CURRENT task in THIS zone?
@@ -68,7 +83,7 @@ public class QuestZone : MonoBehaviour
         }
         else
         {
-            // Wrong item, wrong zone, or no active quest. 
+            // Wrong item, wrong zone, or no active quest.
             // The item just falls on the floor.
             Debug.Log($"[QuestZone] {item.itemDefinition.itemID} was rejected by {zoneID}.");
         }
