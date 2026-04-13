@@ -26,10 +26,14 @@ public class QuestZone : MonoBehaviour
             Debug.LogWarning($"[QuestZone] No CollectableAgent_LO assigned on {name}. Items will be queued but target won't update.");
     }
 
+
+    // Attempts to deliver the given item to this zone's active quest.
+    // Destroys the item if accepted, returns the next queued item (or null).
+
     public CollectableItem Collect(CollectableItem item)
     {
-
-        bool isAccepted = QuestManager.Instance.TryDeliverItem(item.itemDefinition.itemID, zoneID);
+        // Ask the QuestManager whether this item + zone combo is valid.
+        bool isAccepted = QuestManager.Instance.TryDeliverItem(item.itemDefinition.ItemID, zoneID);
 
         if (isAccepted)
         {
@@ -41,7 +45,7 @@ public class QuestZone : MonoBehaviour
         {
             // Wrong item, wrong zone, or no active quest.
             // The item just falls on the floor.
-            Debug.Log($"[QuestZone] {item.itemDefinition.itemID} was rejected by {zoneID}.");
+            Debug.Log($"[QuestZone] {item.itemDefinition.ItemID} was rejected by {zoneID}.");
         }
 
         if (collectable.Count == 0)
@@ -61,9 +65,10 @@ public class QuestZone : MonoBehaviour
             return;
         }
 
-        if (!QuestManager.Instance.IsItemDeliverable(item.itemDefinition.itemID, zoneID))
+        // Reject items that don't match the current quest's requirement for this zone.
+        if (!QuestManager.Instance.IsItemDeliverable(item.itemDefinition.ItemID, zoneID))
         {
-            Debug.Log($"[QuestZone] {item.itemDefinition.itemID} was rejected by {zoneID}.");
+            Debug.Log($"[QuestZone] {item.itemDefinition.ItemID} was rejected by {zoneID}.");
             return;
         }
 
@@ -74,7 +79,7 @@ public class QuestZone : MonoBehaviour
 
         /*
         // Ask the Manager: Is this the correct item for the CURRENT task in THIS zone?
-        bool isAccepted = QuestManager.Instance.TryDeliverItem(item.itemDefinition.itemID, zoneID);
+        bool isAccepted = QuestManager.Instance.TryDeliverItem(item.itemDefinition.ItemID, zoneID);
 
         if (isAccepted)
         {
@@ -85,7 +90,7 @@ public class QuestZone : MonoBehaviour
         {
             // Wrong item, wrong zone, or no active quest.
             // The item just falls on the floor.
-            Debug.Log($"[QuestZone] {item.itemDefinition.itemID} was rejected by {zoneID}.");
+            Debug.Log($"[QuestZone] {item.itemDefinition.ItemID} was rejected by {zoneID}.");
         }
         */
     }

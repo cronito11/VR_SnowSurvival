@@ -52,27 +52,30 @@ public class QuestUIManager : MonoBehaviour
 
     // Handlers 
 
+    // <Shows the new quest name, zone, and resets the progress counter.
     private void HandleQuestActivated(QuestState quest)
     {
-        questNameText.text = quest.sourceQuest.taskID;
+        questNameText.text = quest.sourceQuest.TaskID;
         zone.text = $"Zone: {quest.assignedZoneID}";
         SetProgress(quest);
     }
 
+    // Updates the "1 / 3" progress text.
     private void HandleProgressUpdated(QuestState quest)
     {
         SetProgress(quest);
     }
 
+    // Appends a green checkmark entry to the completed list.
     private void HandleQuestCompleted(QuestState quest)
     {
-        
-        completedText.text += $"<color=green>✓  {quest.sourceQuest.taskID}</color>\n";
+        completedText.text += $"<color=green>✓  {quest.sourceQuest.TaskID}</color>\n";
     }
 
+    // Appends a red cross entry to the completed list (timed out).
     private void HandleQuestFailed(QuestState quest)
     {
-        completedText.text += $"<color=red>✗  {quest.sourceQuest.taskID}  (timed out)</color>\n";
+        completedText.text += $"<color=red>✗  {quest.sourceQuest.TaskID}  (timed out)</color>\n";
     }
 
     // Helpers
