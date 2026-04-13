@@ -1,16 +1,10 @@
 using UnityEngine;
-
 [CreateAssetMenu(fileName = "NewItem", menuName = "WinterSurvival/Item Definition")]
 public class ItemDefinition : ScriptableObject
 {
-    [Header("Identity")]
-    [Tooltip("Unique ID used by the event")]
-    public string itemID;
-    
-    [Header("Display")]
-    [Tooltip("Name shown to the player")]
-    public string displayName;
-    
-    [Tooltip("Icon shown in the UI")]
-    public Sprite icon;
+    // Unique ID used to match deliveries. Derived from the asset file name.</summary>
+    public string ItemID      => name;
+
+    // Name shown in the UI. Derived from the asset file name.</summary>
+    public string DisplayName => name;
 }

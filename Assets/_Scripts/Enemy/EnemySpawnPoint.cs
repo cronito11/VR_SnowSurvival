@@ -27,7 +27,7 @@ public class EnemySpawnPoint : MonoBehaviour
         if (!enemyPrefab) return;
         if (_current) return;
 
-        _current = Instantiate(enemyPrefab, transform.position, transform.rotation); // spawns prefab instance. [web:199]
+        _current = Instantiate(enemyPrefab, transform.position, transform.rotation); // spawns prefab instance.
 
         // Wire bear controller if present (works for any enemy using this controller pattern).
         var controller = _current.GetComponent<BearEnemyController>();

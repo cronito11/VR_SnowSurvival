@@ -35,6 +35,9 @@ public class GameplayManager : MonoBehaviour
         {
             Debug.LogWarning("Player Health component not found. GameplayManager cannot detect player death.");
         }
+
+        // Listen for the all-quests-completed event to trigger the win condition.
+        GameEvents.OnAllQuestsCompleted += OnAllQuestsCompleted;
     }
 
     private void OnDestroy()
@@ -44,6 +47,27 @@ public class GameplayManager : MonoBehaviour
         {
             playerHealth.Died -= OnPlayerDied;
         }
+
+        // Unsubscribe to prevent memory leaks when the scene is unloaded.
+        GameEvents.OnAllQuestsCompleted -= OnAllQuestsCompleted;
+    }
+
+
+    // Called when every quest has been completed.
+    // Saves the player's total time as a best score and returns to the menu.
+    private void OnAllQuestsCompleted()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        gameOverTime = Time.time;
+
+        float survivalTime = CurrentGameTime;
+        SaveBestScore(survivalTime);
+
+        Debug.Log($"All quests completed! Total time: {FormatTime(survivalTime)}");
+
+        Invoke(nameof(ReturnToMenu), 3f);
     }
 
     private void OnPlayerDied(Health health)
