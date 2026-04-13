@@ -16,6 +16,7 @@ public class QuestZone : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<BoxCollider>();
+        agent  = GetComponentInChildren<CollectableAgent_LO>();
         _collider.isTrigger = true;
     }
 

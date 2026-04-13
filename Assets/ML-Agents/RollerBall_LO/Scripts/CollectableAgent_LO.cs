@@ -10,7 +10,6 @@ public class CollectableAgent_LO : Agent
     private Rigidbody rBody;
     private QuestZone questManager;
 
-    private bool reachedTarget = false;
 
     void Start()
     {
@@ -91,8 +90,9 @@ public class CollectableAgent_LO : Agent
     {
         if(Target != null) return; // We already have a target, ignore the request
 
+        EndEpisode();
         Target = newTarget;
-        reachedTarget = false;
+        newTarget.parent = this.transform.parent;
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
