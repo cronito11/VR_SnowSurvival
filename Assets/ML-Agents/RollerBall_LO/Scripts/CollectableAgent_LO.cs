@@ -34,22 +34,17 @@ public class CollectableAgent_LO : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        if (Target != null)
-        {
-            // Target and Agent positions
-            sensor.AddObservation(Target.localPosition);
-            sensor.AddObservation(this.transform.localPosition);
-        }
-        else
-        {
-            // Target and Agent positions
-            sensor.AddObservation(returnPosition.localPosition);
-            sensor.AddObservation(this.transform.localPosition);
-        }
-            // Agent velocity
+        // Si el Target no existe, enviamos Vector3.zero para evitar el error
+        sensor.AddObservation(Target != null ? 1.0f : 0.0f);
+        sensor.AddObservation(Target != null ? Target.localPosition : Vector3.zero);
+        sensor.AddObservation(returnPosition.localPosition);
+        sensor.AddObservation(this.transform.localPosition);
+        // Agent velocity
         sensor.AddObservation(rBody.linearVelocity.x);
         sensor.AddObservation(rBody.linearVelocity.z);
-        //8 floats of observation in total
+
+        sensor.AddObservation(rBody.angularVelocity.x);
+        sensor.AddObservation(rBody.angularVelocity.z);
     }
 
     public float forceMultiplier = 10;
@@ -61,30 +56,33 @@ public class CollectableAgent_LO : Agent
         controlSignal.z = actionBuffers.ContinuousActions[1];
         rBody.AddForce(controlSignal * forceMultiplier);
 
+        AddReward(-0.001f);
         // Rewards
         float distanceToTarget = Vector3.Distance(this.transform.localPosition,
         (Target != null ? Target : returnPosition).localPosition);
         
         // Reached current destination
-        if (distanceToTarget < 1.0f && !reachedTarget)
+        if (distanceToTarget < 1.42f)
         {
-            reachedTarget = true;
             if (Target != null) // We reached the collectable target
             {
                 AddReward(1.0f); // Reward for finding a target
                 CollectableItem newTarget = questManager.Collect(Target.GetComponent<CollectableItem>());
                 Target = newTarget != null ? newTarget.transform : null;
-                reachedTarget = false;
             }
             else // We reached the return position
             {
-                AddReward(1.0f); // Final reward for bringing them back
-                EndEpisode();
+                if (rBody.linearVelocity.magnitude < 0.5f)
+                {
+                    AddReward(1.0f); // Final reward for bringing them back
+                    EndEpisode();
+                }
             }
         }
         // Fell off platform
         else if (this.transform.localPosition.y < 0)
         {
+            AddReward(-1f);
             EndEpisode();
         }
     }

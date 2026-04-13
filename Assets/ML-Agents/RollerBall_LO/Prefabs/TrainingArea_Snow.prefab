@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.Policies.BehaviorParameters
   m_BrainParameters:
-    VectorObservationSize: 8
+    VectorObservationSize: 14
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -237,9 +237,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  returnPosition: {fileID: 6083135544498255494}
   Target: {fileID: 1538220226271737977}
-  collectableCount: 1
+  returnPosition: {fileID: 6083135544498255494}
   forceMultiplier: 10
 --- !u!1 &4660218612573850129
 GameObject:
@@ -259,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1538220226271737977
 Transform:
   m_ObjectHideFlags: 0
